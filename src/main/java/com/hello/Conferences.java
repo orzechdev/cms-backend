@@ -1,15 +1,15 @@
 package com.hello;
 
-public class Articles {
+public class Conferences {
 
     private final long id;
     private final String content;
     private final String test;
     //private final String test;
-    public Articles(long id, String content) {
+    public Conferences(long id, String content) {
         this.id = id;
         this.content = content;
-        this.test = "articlestest";
+        this.test = "conferencestest";
         //this.test = testString;
     }
     public long getId() {
