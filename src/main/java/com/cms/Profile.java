@@ -1,15 +1,15 @@
-package com.hello;
+package com.cms;
 
-public class Articles {
+public class Profile {
 
     private final long id;
     private final String content;
     private final String test;
     //private final String test;
-    public Articles(long id, String content) {
+    public Profile(long id, String content) {
         this.id = id;
         this.content = content;
-        this.test = "articlestest";
+        this.test = "profiletest";
         //this.test = testString;
     }
     public long getId() {

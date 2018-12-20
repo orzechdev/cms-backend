@@ -1,9 +1,9 @@
 
-package com.hello;
+package com.cms;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.hello.SQLTest;
+import com.cms.SQLTest;
 
 
 public interface SQLTestRepository extends CrudRepository<SQLTest,Integer> {

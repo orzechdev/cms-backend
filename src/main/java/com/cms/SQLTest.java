@@ -1,5 +1,5 @@
 
-package com.hello;
+package com.cms;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.hello;
+package com.cms;
 
 public class Conferences {
 

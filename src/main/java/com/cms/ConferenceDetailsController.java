@@ -1,4 +1,4 @@
-package com.hello;
+package com.cms;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
-public class ArticlesController {
+public class ConferenceDetailsController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/articles")
-    public Articles articles(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Articles(counter.incrementAndGet(), String.format(template, name));
+    @RequestMapping("/conferencedetails")
+    public ConferenceDetails conferenceDetails(@RequestParam(value="name", defaultValue="World") String name) {
+        return new ConferenceDetails(counter.incrementAndGet(), String.format(template, name));
     }
 
 }
