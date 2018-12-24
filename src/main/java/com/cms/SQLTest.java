@@ -4,6 +4,7 @@ package com.cms;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "sqltest", schema="dbo")
 public class SQLTest {
 
 	
