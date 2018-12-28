@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.cms.security")
+@ComponentScan("com.cms")
 public class Application extends SpringBootServletInitializer {
 
     @Override
