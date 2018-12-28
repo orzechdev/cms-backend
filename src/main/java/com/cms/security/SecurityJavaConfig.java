@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@ComponentScan("com.cms.security")
+@ComponentScan("com.cms")
 public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
@@ -51,7 +51,6 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/articles").permitAll()
                 .antMatchers("/profile").authenticated()
                 .antMatchers("/greeting").hasRole("ADMIN")
                 .and()
