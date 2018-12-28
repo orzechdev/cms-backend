@@ -46,19 +46,23 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint(restAuthenticationEntryPoint)
-                .and()
                 .authorizeRequests()
-                .antMatchers("/profile").authenticated()
-                .antMatchers("/greeting").hasRole("ADMIN")
-                .and()
-                .formLogin()
-                .successHandler(mySuccessHandler)
-                .failureHandler(myFailureHandler)
-                .and()
-                .logout();
+                .anyRequest().permitAll();
+        // TODO Temporaty all paths are available to everyone, need to restrict access.
+//        http
+//                .csrf().disable()
+//                .exceptionHandling()
+//                .authenticationEntryPoint(restAuthenticationEntryPoint)
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/profile").authenticated()
+//                .antMatchers("/greeting").hasRole("ADMIN")
+//                .and()
+//                .formLogin()
+//                .successHandler(mySuccessHandler)
+//                .failureHandler(myFailureHandler)
+//                .and()
+//                .logout();
     }
 
     @Bean

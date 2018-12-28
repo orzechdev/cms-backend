@@ -1,4 +1,4 @@
-package com.cms;
+package com.cms.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

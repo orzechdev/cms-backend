@@ -1,6 +1,7 @@
-package com.cms;
+package com.cms.controllers;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.cms.Profile;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
