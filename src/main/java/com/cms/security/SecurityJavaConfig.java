@@ -57,12 +57,24 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/greeting").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
-                .addFilterAt(new CustomUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAt(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
                 .successHandler(mySuccessHandler)
                 .failureHandler(myFailureHandler)
                 .and()
                 .logout();
+    }
+
+    private CustomUsernamePasswordAuthenticationFilter getAuthenticationFilter() {
+        CustomUsernamePasswordAuthenticationFilter authFilter = new CustomUsernamePasswordAuthenticationFilter();
+        try {
+            authFilter.setAuthenticationManager(this.authenticationManagerBean());
+            authFilter.setAuthenticationSuccessHandler(mySuccessHandler);
+            authFilter.setAuthenticationFailureHandler(myFailureHandler);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return authFilter;
     }
 
     @Bean

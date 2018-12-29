@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 
 public class CustomUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {

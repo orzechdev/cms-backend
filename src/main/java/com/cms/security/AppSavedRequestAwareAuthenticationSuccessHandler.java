@@ -17,6 +17,9 @@ import java.io.IOException;
 @Component
 @ComponentScan("com.cms")
 public class AppSavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+
+    private RequestCache requestCache = new HttpSessionRequestCache();
+
     @Override
     public void onAuthenticationSuccess(
             HttpServletRequest request,
@@ -24,14 +27,25 @@ public class AppSavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlA
             Authentication authentication)
             throws ServletException, IOException {
 
-        if ("application/json".equals(request.getHeader("Content-Type"))) {
-            /*
-             * USED if you want to AVOID redirect to LoginSuccessful.htm in JSON authentication
-             */
-            response.getWriter().print("{\"responseCode\":\"SUCCESS\"}");
-            response.getWriter().flush();
-        } else {
-            super.onAuthenticationSuccess(request, response, authentication);
+        SavedRequest savedRequest = requestCache.getRequest(request, response);
+
+        if (savedRequest == null) {
+            clearAuthenticationAttributes(request);
+            return;
         }
+        String targetUrlParam = getTargetUrlParameter();
+        if (isAlwaysUseDefaultTargetUrl()
+                || (targetUrlParam != null
+                && StringUtils.hasText(request.getParameter(targetUrlParam)))) {
+            requestCache.removeRequest(request, response);
+            clearAuthenticationAttributes(request);
+            return;
+        }
+
+        clearAuthenticationAttributes(request);
+    }
+
+    public void setRequestCache(RequestCache requestCache) {
+        this.requestCache = requestCache;
     }
 }
