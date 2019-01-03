@@ -1,4 +1,4 @@
-package com.cms;
+package com.cms.entity;
 
 public class Articles {
 
