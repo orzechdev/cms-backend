@@ -1,22 +1,49 @@
-package com.cms.controllers;
-import java.util.concurrent.atomic.AtomicLong;
+package com.cms.controller;
+import java.util.List;
 
-import com.cms.Conferences;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
-@RestController
-public class ConferencesController {
+import com.cms.entity.Conference;
+import com.cms.service.ConferenceService;
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+@CrossOrigin
+@RestController
+public class ConferenceController {
+
+	@Autowired
+    private ConferenceService conferenceService;
 
     @RequestMapping("/conferences")
-    public Conferences conferences(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Conferences(counter.incrementAndGet(), String.format(template, name));
+    public List<Conference> conferences() {
+        return conferenceService.getAllConferences();
     }
-
+    
+    @RequestMapping("/conferences/{conferenceId}")
+    public Conference getConference(@PathVariable Integer conferenceId) {
+    	return conferenceService.getConference(conferenceId);   	
+    }
+    
+    @RequestMapping(value="/conferences", method=RequestMethod.POST)
+    public void addConference(@RequestBody Conference conference) {
+    	conferenceService.addConference(conference); 	
+    }
+    
+    @RequestMapping(value="/conferences/{conferenceId}", method=RequestMethod.PUT)
+    public void updateConference(@RequestBody Conference conference) {
+    	conferenceService.updateConference(conference);
+    }
+    
+    @RequestMapping(value="/conferences/{conferenceId}", method=RequestMethod.DELETE)
+    public void deleteConference(@PathVariable Integer conferenceId) {
+    	conferenceService.deleteConference(conferenceId);
+    }
+    
+    
+    
 }
