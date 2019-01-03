@@ -1,15 +1,15 @@
-package com.cms;
+package com.cms.entity;
 
-public class Conferences {
+public class Profile {
 
     private final long id;
     private final String content;
     private final String test;
     //private final String test;
-    public Conferences(long id, String content) {
+    public Profile(long id, String content) {
         this.id = id;
         this.content = content;
-        this.test = "conferencestest";
+        this.test = "profiletest";
         //this.test = testString;
     }
     public long getId() {

@@ -1,5 +1,5 @@
 
-package com.cms;
+package com.cms.entity;
 
 import java.util.Date;
 
