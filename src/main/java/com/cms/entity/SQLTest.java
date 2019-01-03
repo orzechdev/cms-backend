@@ -1,5 +1,4 @@
-
-package com.cms;
+package com.cms.entity;
 
 import javax.persistence.*;
 

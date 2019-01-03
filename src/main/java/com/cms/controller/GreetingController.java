@@ -1,22 +1,23 @@
-package com.cms.controllers;
+package com.cms.controller;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.cms.ConferenceDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cms.entity.Greetings;
+
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
-public class ConferenceDetailsController {
+public class GreetingController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/conferencedetails")
-    public ConferenceDetails conferenceDetails(@RequestParam(value="name", defaultValue="World") String name) {
-        return new ConferenceDetails(counter.incrementAndGet(), String.format(template, name));
+    @RequestMapping("/greeting")
+    public Greetings greeting(@RequestParam(value="name", defaultValue="World") String name) {
+        return new Greetings(counter.incrementAndGet(), String.format(template, name));
     }
 
 }

@@ -1,15 +1,13 @@
-package com.cms;
+package com.cms.entity;
 
-public class Articles {
+public class Greetings {
 
     private final long id;
     private final String content;
-    private final String test;
     //private final String test;
-    public Articles(long id, String content) {
+    public Greetings(long id, String content) {
         this.id = id;
         this.content = content;
-        this.test = "articlestest";
         //this.test = testString;
     }
     public long getId() {
@@ -17,10 +15,6 @@ public class Articles {
     }
     public String getContent() {
         return content;
-    }
-    
-    public String getTest() {
-        return test;
     }
    // public String getAdditional(){ return test; }
 }
