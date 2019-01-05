@@ -2,10 +2,12 @@ package com.cms.security;
 
 import com.cms.security.AppSavedRequestAwareAuthenticationSuccessHandler;
 import com.cms.security.RestAuthenticationEntryPoint;
+import com.cms.service.AppUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,18 +32,26 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
 
     private SimpleUrlAuthenticationFailureHandler myFailureHandler = new SimpleUrlAuthenticationFailureHandler();
 
+    @Autowired
+    private AppUserDetailsService userDetailsService;
+
     public SecurityJavaConfig() {
         super();
         SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
     }
 
     @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin").password(encoder().encode("adminPass")).roles("ADMIN")
-                .and()
-                .withUser("user").password(encoder().encode("userPass")).roles("USER");
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
     }
+
+//    @Override
+//    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("admin").password(encoder().encode("adminPass")).roles("ADMIN")
+//                .and()
+//                .withUser("user").password(encoder().encode("userPass")).roles("USER");
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -62,6 +72,14 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(myFailureHandler)
                 .and()
                 .logout();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(encoder());
+        return authProvider;
     }
 
     private CustomUsernamePasswordAuthenticationFilter getAuthenticationFilter() {
