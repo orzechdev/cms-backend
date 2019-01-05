@@ -63,7 +63,7 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // TODO Temporaty all paths are available to everyone, need to restrict access.
 //                .antMatchers("/profile").authenticated()
-                .antMatchers("/greeting").hasRole("ADMIN")
+                .antMatchers("/greeting").hasAnyAuthority("user", "admin")
                 .anyRequest().permitAll()
                 .and()
                 .addFilterAt(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.cms.entity.Conference;
@@ -14,7 +15,8 @@ public class ConferenceService {
 	
 	@Autowired
 	private ConferenceRepository conferenceRepository;
-	
+
+//    @PreAuthorize("hasAuthority('user')") TODO: think about authorization roles, and where to check them...
 	public List<Conference> getAllConferences() {
 		List<Conference> conferences = new ArrayList<>();
 		conferenceRepository.findAll().forEach(conferences::add);
@@ -32,7 +34,7 @@ public class ConferenceService {
 	public void updateConference(Conference conference) {
 		conferenceRepository.save(conference);
 	}
-	
+
 	public void deleteConference(Integer conferenceId) {
 		conferenceRepository.deleteById(conferenceId);		
 	}
