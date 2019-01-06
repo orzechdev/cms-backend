@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -63,6 +64,7 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // TODO Temporaty all paths are available to everyone, need to restrict access.
 //                .antMatchers("/profile").authenticated()
+                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()//allow CORS option calls (for Preflight request)
                 .antMatchers("/greeting").hasAnyAuthority("user", "admin")
                 .anyRequest().permitAll()
                 .and()
