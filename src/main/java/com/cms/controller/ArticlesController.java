@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cms.entity.ArticleTable;
+import com.cms.entity.Article;
 import com.cms.service.ArticleService;
 
 @CrossOrigin
@@ -20,22 +20,22 @@ public class ArticlesController {
     private ArticleService articleService;
 
     @RequestMapping("/articles")
-    public List<ArticleTable> articles() {
+    public List<Article> articles() {
         return articleService.getAllArticles();
     }
     
     @RequestMapping("/articles/{articleId}")
-    public ArticleTable getArticle(@PathVariable Integer articleId) {
+    public Article getArticle(@PathVariable Integer articleId) {
     	return articleService.getArticle(articleId);   	
     }
     
     @RequestMapping(value="/articles", method=RequestMethod.POST)
-    public void addArticle(@RequestBody ArticleTable article) {
+    public void addArticle(@RequestBody Article article) {
     	articleService.addArticle(article); 	
     }
     
     @RequestMapping(value="/articles/{articleId}", method=RequestMethod.PUT)
-    public void updateArticle(@RequestBody ArticleTable article) {
+    public void updateArticle(@RequestBody Article article) {
     	articleService.updateArticle(article);
     }
     

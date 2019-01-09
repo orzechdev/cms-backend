@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Article", schema="dbo")
-public class ArticleTable {
+public class Article {
 
 	
 	@Id
