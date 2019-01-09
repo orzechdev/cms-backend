@@ -1,0 +1,42 @@
+package com.cms.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
+
+import com.cms.entity.ArticleTable;
+import com.cms.repository.ArticleRepository;
+
+@Service
+public class ArticleService {
+	
+	@Autowired
+	private ArticleRepository articleRepository;
+
+//    @PreAuthorize("hasAuthority('user')") TODO: think about authorization roles, and where to check them...
+	public List<ArticleTable> getAllArticles() {
+		List<ArticleTable> articles = new ArrayList<>();
+		articleRepository.findAll().forEach(articles::add);
+		return articles;
+	}
+
+	public ArticleTable getArticle(Integer articleId) {
+		return articleRepository.findById(articleId).get();
+	}
+
+	public void addArticle(ArticleTable article) {
+		articleRepository.save(article);
+	}
+	
+	public void updateArticle(ArticleTable article) {
+		articleRepository.save(article);
+	}
+
+	public void deleteArticle(Integer articleId) {
+		articleRepository.deleteById(articleId);		
+	}
+
+}

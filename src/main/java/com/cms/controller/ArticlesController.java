@@ -1,23 +1,49 @@
 package com.cms.controller;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cms.entity.Articles;
+import com.cms.entity.ArticleTable;
+import com.cms.service.ArticleService;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin
 @RestController
 public class ArticlesController {
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+	@Autowired
+    private ArticleService articleService;
 
     @RequestMapping("/articles")
-    public Articles articles(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Articles(counter.incrementAndGet(), String.format(template, name));
+    public List<ArticleTable> articles() {
+        return articleService.getAllArticles();
     }
-
+    
+    @RequestMapping("/articles/{articleId}")
+    public ArticleTable getArticle(@PathVariable Integer articleId) {
+    	return articleService.getArticle(articleId);   	
+    }
+    
+    @RequestMapping(value="/articles", method=RequestMethod.POST)
+    public void addArticle(@RequestBody ArticleTable article) {
+    	articleService.addArticle(article); 	
+    }
+    
+    @RequestMapping(value="/articles/{articleId}", method=RequestMethod.PUT)
+    public void updateArticle(@RequestBody ArticleTable article) {
+    	articleService.updateArticle(article);
+    }
+    
+    @RequestMapping(value="/articles/{articleId}", method=RequestMethod.DELETE)
+    public void deleteArticle(@PathVariable Integer articleId) {
+    	articleService.deleteArticle(articleId);
+    }
+    
+    
+    
 }
