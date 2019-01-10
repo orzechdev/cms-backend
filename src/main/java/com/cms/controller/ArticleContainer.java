@@ -20,7 +20,7 @@ public class ArticleContainer {
 		name=article.getName();
 		publishDate=article.getPublishDate();
 		isAccepted=article.isAccepted();
-		authorName=article.getUserAuthor().getUsername();
+		authorName=article.getUserAuthor().getFirstName()+" "+article.getUserAuthor().getLastName();
 	}
 
 	public Integer getArticleID() {
