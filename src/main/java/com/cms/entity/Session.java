@@ -1,6 +1,7 @@
 package com.cms.entity;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="session", schema="dbo")
+@Table(name="Session", schema="dbo")
 public class Session {
 
 	@Id
@@ -24,10 +25,10 @@ public class Session {
     private String chairName;
 	
 	@Column(name="datetime", nullable=false)
-    private Date datetime;
+    private Time datetime;
 	
 	@Column(name="endtime", nullable=false)
-    private Date endtime;
+    private Time endtime;
 
 	@Column(name="name", nullable=false)
     private String name;
@@ -36,7 +37,7 @@ public class Session {
 		
 	}
 
-    public Session(Integer sessionID, Integer conferenceID, String chairName, Date datetime, Date endtime, String name)
+    public Session(Integer sessionID, Integer conferenceID, String chairName, Time datetime, Time endtime, String name)
     {
 		super();
 		this.sessionID = sessionID;
@@ -60,11 +61,11 @@ public class Session {
 		return conferenceID;
 	}
 
-	public Date getDatetime() {
+	public Time getDatetime() {
 		return datetime;
 	}
 
-	public Date getEndtime() {
+	public Time getEndtime() {
 		return endtime;
 	}
 
