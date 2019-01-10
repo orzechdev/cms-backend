@@ -20,13 +20,13 @@ public class ArticlesController {
     private ArticleService articleService;
 
     @RequestMapping("/articles")
-    public List<Article> articles() {
-        return articleService.getAllArticles();
+    public List<ArticleContainer> articles() {
+        return articleService.getAllArticleContainers();
     }
     
     @RequestMapping("/articles/{articleId}")
-    public Article getArticle(@PathVariable Integer articleId) {
-    	return articleService.getArticle(articleId);   	
+    public ArticleContainer getArticle(@PathVariable Integer articleId) {
+    	return articleService.getArticleContainer(articleId);   	
     }
     
     @RequestMapping(value="/articles", method=RequestMethod.POST)

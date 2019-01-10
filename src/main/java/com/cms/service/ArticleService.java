@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import com.cms.controller.ArticleContainer;
 import com.cms.entity.Article;
 import com.cms.repository.ArticleRepository;
 
@@ -25,6 +26,19 @@ public class ArticleService {
 
 	public Article getArticle(Integer articleId) {
 		return articleRepository.findById(articleId).get();
+	}
+	
+	public List<ArticleContainer> getAllArticleContainers() {
+		List<ArticleContainer> articles = new ArrayList<>();
+		for(Article a: articleRepository.findAll()) {
+			articles.add(new ArticleContainer(a));
+		}
+		//articleRepository.findAll().forEach(articles::add);
+		return articles;
+	}
+
+	public ArticleContainer getArticleContainer(Integer articleId) {
+		return new ArticleContainer(articleRepository.findById(articleId).get());
 	}
 
 	public void addArticle(Article article) {
