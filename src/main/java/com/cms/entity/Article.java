@@ -21,8 +21,9 @@ public class Article {
 	@Temporal(TemporalType.DATE)
 	private Date publishDate;
 	
-	@Column(nullable = false)
-	private int userAuthorID;
+	@ManyToOne
+	@JoinColumn(name = "userAuthorID",nullable= false)
+	private User userAuthor;
 	
 	private boolean isAccepted;
 
@@ -46,10 +47,19 @@ public class Article {
 		return publishDate;
 	}
 
+	public User getUserAuthor() {
+		return userAuthor;
+	}
+
+	public void setUserAuthor(User userAuthor) {
+		this.userAuthor = userAuthor;
+	}
+
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
 	}
 
+	/*
 	public int getUserAuthorID() {
 		return userAuthorID;
 	}
@@ -57,6 +67,7 @@ public class Article {
 	public void setUserAuthorID(int userAuthorID) {
 		this.userAuthorID = userAuthorID;
 	}
+	*/
 
 	public boolean isAccepted() {
 		return isAccepted;
