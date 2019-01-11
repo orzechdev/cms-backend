@@ -2,12 +2,7 @@ package com.cms.entity;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Conference", schema="dbo")
@@ -28,9 +23,10 @@ public class Conference {
 	
 	@Column(name="finishDate", nullable=false)
     private Date finishDate;
-	
-	@Column(name="organizerID", nullable=false)
-    private Integer organizerID;
+
+	@ManyToOne
+	@JoinColumn(name = "organizerID", nullable = false)
+    private User organizer;
 	
 	@Column(name="conferenceImg", nullable=true)
     private String conferenceImg;
@@ -46,14 +42,14 @@ public class Conference {
 	}
 
     public Conference(Integer conferenceID, String conferenceName, String description, Date startDate, Date finishDate,
-			Integer organizerID, String conferenceImg, String emergencyInfo, String accomodationInfo) {
+			User organizer, String conferenceImg, String emergencyInfo, String accomodationInfo) {
 		super();
 		this.conferenceID = conferenceID;
 		this.conferenceName = conferenceName;
 		this.description = description;
 		this.startDate = startDate;
 		this.finishDate = finishDate;
-		this.organizerID = organizerID;
+		this.organizer = organizer;
 		this.conferenceImg = conferenceImg;
 		this.emergencyInfo = emergencyInfo;
 		this.accomodationInfo = accomodationInfo;
@@ -79,8 +75,8 @@ public class Conference {
 		return finishDate;
 	}
 
-	public long getOrganizerID() {
-		return organizerID;
+	public User getOrganizer() {
+		return organizer;
 	}
 
 	public String getConferenceImg() {
