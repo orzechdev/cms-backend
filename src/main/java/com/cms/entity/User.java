@@ -1,5 +1,8 @@
 package com.cms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -72,6 +75,8 @@ public class User {
         this.username = username;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "password")
     public String getPassword() {
         return password;
     }

@@ -2,6 +2,9 @@ package com.cms.service;
 
 import com.cms.entity.User;
 import com.cms.repository.UserRepository;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {
@@ -28,6 +32,10 @@ public class AppUserDetailsService implements UserDetailsService {
         return new AppUserPrincipal(user);
     }
 
+    public User getUser(Integer userId) {
+        Optional<User> userObject = userRepository.findById(userId);
+        return userRepository.findById(userId).get();
+    }
 
     public class AppUserPrincipal implements UserDetails {
         private User user;
@@ -45,7 +53,13 @@ public class AppUserDetailsService implements UserDetailsService {
             return authorities;
         }
 
+        public Integer getId() {
+            return user.getId();
+        }
+
         @Override
+        @JsonIgnore
+        @JsonProperty(value = "password")
         public String getPassword() {
             return user.getPassword();
         }
@@ -53,6 +67,10 @@ public class AppUserDetailsService implements UserDetailsService {
         @Override
         public String getUsername() {
             return user.getUsername();
+        }
+
+        public String getRole() {
+            return user.getRole();
         }
 
         @Override
@@ -73,6 +91,26 @@ public class AppUserDetailsService implements UserDetailsService {
         @Override
         public boolean isEnabled() {
             return true;
+        }
+
+        public String getFirstName() {
+            return user.getFirstName();
+        }
+
+        public String getLastName() {
+            return user.getLastName();
+        }
+
+        public String getBio() {
+            return user.getBio();
+        }
+
+        public String getEmailAddress() {
+            return user.getEmailAddress();
+        }
+
+        public Integer getContactNumber() {
+            return user.getContactNumber();
         }
     }
 }
