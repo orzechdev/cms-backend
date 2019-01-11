@@ -1,6 +1,6 @@
 package com.cms.entity;
 
-import java.sql.Date;
+import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +19,7 @@ public class Version {
     private Integer versionID;
 	
 	@Column(name="updateTime", nullable=false)
-    private Date updateTime;
+    private Time updateTime;
 	
 	@Column(name="documentUrl", nullable=false)
     private String documentUrl;
@@ -34,7 +34,7 @@ public class Version {
 		
 	}
 
-    public Version(Integer versionID, Date  updateTime, String documentUrl, Integer vNumber, Integer articleID ) {
+    public Version(Integer versionID, Time  updateTime, String documentUrl, Integer vNumber, Integer articleID ) {
 		super();
 		this.versionID = versionID;
 		this.updateTime = updateTime;
@@ -47,7 +47,7 @@ public class Version {
 		return versionID;
 	}
 
-	public Date getUpdateTime() {
+	public Time getUpdateTime() {
 		return updateTime;
 	}
 
