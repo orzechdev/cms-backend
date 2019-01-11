@@ -14,7 +14,7 @@ import com.cms.service.ReviewService;
 
 @CrossOrigin
 @RestController
-public class ReviewsController {
+public class ReviewController {
 
 	@Autowired
     private ReviewService reviewService;

@@ -14,7 +14,7 @@ import com.cms.service.ArticleService;
 
 @CrossOrigin
 @RestController
-public class ArticlesController {
+public class ArticleController {
 
 	@Autowired
     private ArticleService articleService;
