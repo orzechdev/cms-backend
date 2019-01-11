@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,17 +38,19 @@ public class Presentation {
 	@Column(name="presenterName", nullable=true)
     private String presenterName;
 	
-	@Column(name="sessionID", nullable=true)
-    private Integer sessionID;
+	@ManyToOne
+	@JoinColumn(name = "sessionID",nullable= false)
+	private Session sessionID;
 	
-	@Column(name="articleID", nullable=true)
-    private Integer articleID;
+	@ManyToOne
+	@JoinColumn(name = "articleID",nullable= false)
+	private Article articleID;
 	
 	public Presentation() {
 		
 	}
 
-    public Presentation(Integer presentationID, Time startTime, Time endTime, String room, String description, String presentationName, String presenterName, Integer sessionID, Integer articleID ) {
+    public Presentation(Integer presentationID, Time startTime, Time endTime, String room, String description, String presentationName, String presenterName, Session sessionID, Article articleID ) {
 		super();
 		this.presentationID = presentationID;
 		this.presentationName = presentationName;
@@ -87,11 +91,11 @@ public class Presentation {
 		return presenterName;
 	}
 
-	public Integer getSessionID() {
+	public Session getSessionID() {
 		return sessionID;
 	}
 
-	public Integer getArticleID() {
+	public Article getArticleID() {
 		return articleID;
 	}
     

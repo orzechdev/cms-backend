@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,14 +29,15 @@ public class Version {
 	@Column(name="vNumber", nullable=false)
     private Integer vNumber;
 	
-	@Column(name="articleID", nullable=false)
-    private Integer articleID;
-	
+	@ManyToOne
+	@JoinColumn(name = "articleID",nullable= false)
+	private Article articleID;
+
 	public Version() {
 		
 	}
 
-    public Version(Integer versionID, Time  updateTime, String documentUrl, Integer vNumber, Integer articleID ) {
+    public Version(Integer versionID, Time  updateTime, String documentUrl, Integer vNumber, Article articleID ) {
 		super();
 		this.versionID = versionID;
 		this.updateTime = updateTime;
@@ -59,7 +62,7 @@ public class Version {
 		return vNumber;
 	}
 
-	public Integer getArticleID() {
+	public Article getArticleID() {
 		return articleID;
 	}
     

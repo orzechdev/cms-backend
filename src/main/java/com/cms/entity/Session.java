@@ -1,6 +1,5 @@
 package com.cms.entity;
 
-import java.sql.Date;
 import java.sql.Time;
 
 import javax.persistence.Column;
@@ -8,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +19,9 @@ public class Session {
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer sessionID;
 	
-	@Column(name="conferenceID", nullable=false)
-    private Integer conferenceID;
+	@ManyToOne
+	@JoinColumn(name = "conferenceID",nullable= false)
+	private Conference conferenceID;
 	
 	@Column(name="chairName", nullable=false)
     private String chairName;
@@ -37,7 +39,7 @@ public class Session {
 		
 	}
 
-    public Session(Integer sessionID, Integer conferenceID, String chairName, Time datetime, Time endtime, String name)
+    public Session(Integer sessionID, Conference conferenceID, String chairName, Time datetime, Time endtime, String name)
     {
 		super();
 		this.sessionID = sessionID;
@@ -57,7 +59,7 @@ public class Session {
 		return name;
 	}
 
-	public Integer getConferenceID() {
+	public Conference getConferenceID() {
 		return conferenceID;
 	}
 
