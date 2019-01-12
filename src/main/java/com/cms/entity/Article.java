@@ -9,22 +9,22 @@ import javax.persistence.*;
 @Table(name = "Article", schema="dbo")
 public class Article {
 
-	
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer articleID;
 
 	@Column(nullable = false)
 	private String name;
-	
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date publishDate;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "userAuthorID",nullable= false)
 	private User userAuthor;
-	
+
 	private boolean isAccepted;
 
 	public Integer getArticleID() {
@@ -76,8 +76,17 @@ public class Article {
 	public void setAccepted(boolean isAccepted) {
 		this.isAccepted = isAccepted;
 	}
-	
-	
 
 
+	public Article() {
+
+	}
+
+	public Article(Integer articleID, String name, Date publishDate, User userAuthor, boolean isAccepted) {
+		this.articleID = articleID;
+		this.name = name;
+		this.publishDate = publishDate;
+		this.userAuthor = userAuthor;
+		this.isAccepted = isAccepted;
+	}
 }

@@ -1,8 +1,8 @@
 package com.cms.controller;
-import java.util.concurrent.atomic.AtomicLong;
 
 import com.cms.entity.User;
 import com.cms.service.AppUserDetailsService;
+import com.cms.principal.AppUserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class UserController {
     private AppUserDetailsService userDetailsService;
 
     @RequestMapping("/user")
-    public AppUserDetailsService.AppUserPrincipal getUser(@AuthenticationPrincipal AppUserDetailsService.AppUserPrincipal user ) {
+    public AppUserPrincipal getUser(@AuthenticationPrincipal AppUserPrincipal user ) {
         return user;
     }
 
