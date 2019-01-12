@@ -2,13 +2,14 @@
 package com.cms.controller;
 
 import java.util.Date;
+import java.util.Objects;
 
 
 import com.cms.entity.Article;
 
 public class ArticleContainer {
 
-	
+
     private Integer articleID;
 	private String name;
 	private Date publishDate;
@@ -42,7 +43,18 @@ public class ArticleContainer {
 	public boolean isAccepted() {
 		return isAccepted;
 	}
-	
 
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ArticleContainer that = (ArticleContainer) o;
+		return articleID.equals(that.articleID);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(articleID);
+	}
 }

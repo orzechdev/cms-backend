@@ -46,6 +46,15 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password, String firstName, String lastName, String emailAddress, Integer contactNumber) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.contactNumber = contactNumber;
+    }
+
     public User(Integer id, String username, String password, String firstName, String lastName, String emailAddress, Integer contactNumber, String role, String bio) {
         super();
         this.id = id;

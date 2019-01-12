@@ -25,6 +25,13 @@ public class Review {
 	@Column(nullable = false)
 	private Integer userID;
 
+	public Review(){
+	}
+
+	public Review(Integer articleID) {
+		this.articleID = articleID;
+	}
+
 	public Integer getReviewID() {
 		return reviewID;
 	}
