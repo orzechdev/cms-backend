@@ -1,4 +1,6 @@
 package com.cms.controller;
+import java.security.Principal;
+import java.util.List;
 
 import com.cms.entity.User;
 import com.cms.service.AppUserDetailsService;
@@ -23,6 +25,17 @@ public class UserController {
     public User getUser(@PathVariable Integer userId) {
         return userDetailsService.getUser(userId);
     }
+
+//    @RequestMapping("/authors")
+//    public List<User> getAuthors() {
+//        return userDetailsService.getAuthors();
+//    }
+
+//    @RequestMapping("/reviewers")
+//    public List<Object[]> getReviewers() {
+//        System.out.println(userDetailsService.getReviewers());
+//        return null;
+//    }
 
     public User updateUser(@PathVariable Integer userId) {
         return null; //TODO

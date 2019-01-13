@@ -40,17 +40,17 @@ public class Presentation {
 	
 	@ManyToOne
 	@JoinColumn(name = "sessionID",nullable= false)
-	private Session sessionID;
+	private Session session;
 	
 	@ManyToOne
 	@JoinColumn(name = "articleID",nullable= false)
-	private Article articleID;
+	private Article article;
 	
 	public Presentation() {
 		
 	}
 
-    public Presentation(Integer presentationID, Time startTime, Time endTime, String room, String description, String presentationName, String presenterName, Session sessionID, Article articleID ) {
+    public Presentation(Integer presentationID, Time startTime, Time endTime, String room, String description, String presentationName, String presenterName, Session session, Article article ) {
 		super();
 		this.presentationID = presentationID;
 		this.presentationName = presentationName;
@@ -59,8 +59,8 @@ public class Presentation {
 		this.endTime = endTime;
 		this.room = room;
 		this.presenterName = presenterName;
-		this.sessionID = sessionID;
-		this.articleID = articleID;
+		this.session = session;
+		this.article = article;
 	}
 
 	public long getpresentationID() {
@@ -91,12 +91,12 @@ public class Presentation {
 		return presenterName;
 	}
 
-	public Session getSessionID() {
-		return sessionID;
+	public Session getSession() {
+		return session;
 	}
 
-	public Article getArticleID() {
-		return articleID;
+	public Article getArticle() {
+		return article;
 	}
     
 }

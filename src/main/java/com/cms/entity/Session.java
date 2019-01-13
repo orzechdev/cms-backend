@@ -21,7 +21,7 @@ public class Session {
 	
 	@ManyToOne
 	@JoinColumn(name = "conferenceID",nullable= false)
-	private Conference conferenceID;
+	private Conference conference;
 	
 	@Column(name="chairName", nullable=false)
     private String chairName;
@@ -39,11 +39,11 @@ public class Session {
 		
 	}
 
-    public Session(Integer sessionID, Conference conferenceID, String chairName, Time datetime, Time endtime, String name)
+    public Session(Integer sessionID, Conference conference, String chairName, Time datetime, Time endtime, String name)
     {
 		super();
 		this.sessionID = sessionID;
-		this.conferenceID = conferenceID;
+		this.conference = conference;
 		this.chairName = chairName;
 		this.datetime = datetime;
 		this.endtime = endtime;
@@ -59,8 +59,8 @@ public class Session {
 		return name;
 	}
 
-	public Conference getConferenceID() {
-		return conferenceID;
+	public Conference getConference() {
+		return conference;
 	}
 
 	public Time getDatetime() {
