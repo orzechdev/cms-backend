@@ -46,11 +46,6 @@ public class ConferenceController {
     public void deleteConference(@PathVariable Integer conferenceId) {
     	conferenceService.deleteConference(conferenceId);
     }
-
-    @RequestMapping("/conferences/{conferenceId}/sessions")
-    public List<Session> getConferenceSessions(@PathVariable Integer conferenceId) {
-        return conferenceService.getConferenceSessions(conferenceId);
-    }
     
     @RequestMapping("/conferences/{conferenceId}/presentations")
     public List<Presentation> getConferencePresentations(@PathVariable Integer conferenceId) {
