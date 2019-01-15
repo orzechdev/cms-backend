@@ -55,7 +55,7 @@ public class Version {
 		this.article = article;
 	}
 
-	public long getversionID() {
+	public Integer getVersionID() {
 		return versionID;
 	}
 

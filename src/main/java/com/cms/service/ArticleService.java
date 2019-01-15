@@ -29,7 +29,7 @@ public class ArticleService {
 	public Article getArticle(Integer articleId) {
 		return articleRepository.findById(articleId).get();
 	}
-	
+
 	public List<ArticleContainer> getAllArticleContainers() {
 		List<ArticleContainer> articles = new ArrayList<>();
 		for(Article a: articleRepository.findAll()) {
@@ -48,17 +48,15 @@ public class ArticleService {
 	}
 
 	public Article addArticleFile(String fileName, User userAuthor) {
-	    Article article = new Article(fileName, Calendar.getInstance().getTime(), userAuthor, false);
-		articleRepository.save(article);
-		return article;
+		return articleRepository.save(new Article(fileName, Calendar.getInstance().getTime(), userAuthor, false));
 	}
-	
+
 	public void updateArticle(Article article) {
 		articleRepository.save(article);
 	}
 
 	public void deleteArticle(Integer articleId) {
-		articleRepository.deleteById(articleId);		
+		articleRepository.deleteById(articleId);
 	}
 
 }

@@ -16,10 +16,10 @@ public class VersionService {
     @Autowired
     private VersionRepository versionRepository;
 
-    public void addInitialVersionWithArticle(Article article, String fileUrl) {
+    public Version addInitialVersionWithArticle(Article article, String fileUrl) {
         Version version = new Version(Calendar.getInstance().getTime(), fileUrl, 1, article);
 
-        versionRepository.save(version);
+        return versionRepository.save(version);
     }
 
     public List<Version> getAllVersions() {

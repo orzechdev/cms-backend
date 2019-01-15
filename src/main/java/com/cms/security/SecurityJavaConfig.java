@@ -68,6 +68,7 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/profile").authenticated()
                 .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()//allow CORS option calls (for Preflight request)
                 .antMatchers("/greeting").hasAnyAuthority("user", "admin")
+                .antMatchers("/uploadFile", "/uploadMultipleFiles").hasAnyAuthority("user", "admin")
                 .anyRequest().permitAll()
                 .and()
                 .addFilterAt(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
