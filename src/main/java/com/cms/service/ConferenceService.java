@@ -2,17 +2,15 @@ package com.cms.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.cms.entity.Article;
-import com.cms.entity.Presentation;
-import com.cms.entity.Session;
+import com.cms.entity.*;
 import com.cms.repository.PresentationRepository;
 import com.cms.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import com.cms.entity.Conference;
 import com.cms.repository.ConferenceRepository;
 
 @Service
@@ -26,6 +24,9 @@ public class ConferenceService {
 
 	@Autowired
     private SessionRepository sessionRepository;
+
+	@Autowired
+	private VersionService versionService;
 
 //    @PreAuthorize("hasAuthority('user')") TODO: think about authorization roles, and where to check them...
 	public List<Conference> getAllConferences() {
@@ -62,5 +63,14 @@ public class ConferenceService {
             articles.add(presentation.getArticle())
         );
         return articles;
+    }
+
+    public List<Version> getConferenceArticlesVersions(Integer conferenceId) {
+        List<Article> articles = getConferenceArticles(conferenceId);
+        return versionService.getLatestVersions().stream().filter(version ->
+            articles.stream().anyMatch(article ->
+                article.getArticleID().equals(version.getArticle().getArticleID())
+            )
+        ).collect(Collectors.toList());
     }
 }

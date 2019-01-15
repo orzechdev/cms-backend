@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.cms.entity.Article;
 import com.cms.entity.Presentation;
+import com.cms.entity.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,6 +55,10 @@ public class ConferenceController {
     @RequestMapping("/conferences/{conferenceId}/articles")
     public List<Article> getConferenceArticles(@PathVariable Integer conferenceId) {
         return conferenceService.getConferenceArticles(conferenceId);
+    }
+    @RequestMapping("/conferences/{conferenceId}/articlesVersions")
+    public List<Version> getConferenceArticlesVersions(@PathVariable Integer conferenceId) {
+        return conferenceService.getConferenceArticlesVersions(conferenceId);
     }
     
 }
