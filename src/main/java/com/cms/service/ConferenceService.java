@@ -63,8 +63,4 @@ public class ConferenceService {
         );
         return articles;
     }
-
-    public List<Session> getConferenceSessions(Integer conferenceId) {
-        return new ArrayList<>(sessionRepository.findByConference_ConferenceID(conferenceId));
-    }
 }

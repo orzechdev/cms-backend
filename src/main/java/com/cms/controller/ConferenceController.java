@@ -3,7 +3,6 @@ import java.util.List;
 
 import com.cms.entity.Article;
 import com.cms.entity.Presentation;
-import com.cms.entity.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,11 +44,6 @@ public class ConferenceController {
     @RequestMapping(value="/conferences/{conferenceId}", method=RequestMethod.DELETE)
     public void deleteConference(@PathVariable Integer conferenceId) {
     	conferenceService.deleteConference(conferenceId);
-    }
-
-    @RequestMapping("/conferences/{conferenceId}/sessions")
-    public List<Session> getConferenceSessions(@PathVariable Integer conferenceId) {
-        return conferenceService.getConferenceSessions(conferenceId);
     }
     
     @RequestMapping("/conferences/{conferenceId}/presentations")
