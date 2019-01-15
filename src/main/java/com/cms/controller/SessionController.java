@@ -20,27 +20,27 @@ public class SessionController {
 	@Autowired
     private SessionService sessionService;
 
-    @RequestMapping("/sessions")
-    public List<Session> sessions() {
-        return sessionService.getAllSessions();
+    @RequestMapping("/conferences/{conferenceId}/sessions")
+    public List<Session> sessions(@PathVariable Integer conferenceId) {
+        return sessionService.getAllSessions(conferenceId);
     }
     
-    @RequestMapping("/sessions/{sessionId}")
+    @RequestMapping("/conferences/{conferenceId}/sessions/{sessionId}")
     public Session getSession(@PathVariable Integer sessionId) {
     	return sessionService.getSession(sessionId);   	
     }
     
-    @RequestMapping(value="/sessions", method=RequestMethod.POST)
+    @RequestMapping(value="/conferences/{conferenceId}/sessions", method=RequestMethod.POST)
     public void addSession(@RequestBody Session session) {
     	sessionService.addSession(session); 	
     }
     
-    @RequestMapping(value="/sessions/{sessionId}", method=RequestMethod.PUT)
+    @RequestMapping(value="/conferences/{conferenceId}/sessions/{sessionId}", method=RequestMethod.PUT)
     public void updateSession(@RequestBody Session session) {
     	sessionService.updateSession(session);
     }
     
-    @RequestMapping(value="/sessions/{sessionId}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/conferences/{conferenceId}/sessions/{sessionId}", method=RequestMethod.DELETE)
     public void deleteSession(@PathVariable Integer sessionId) {
     	sessionService.deleteSession(sessionId);
     }
