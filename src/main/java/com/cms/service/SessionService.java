@@ -17,6 +17,12 @@ public class SessionService {
 	private SessionRepository sessionRepository;
 
 //    @PreAuthorize("hasAuthority('user')") TODO: think about authorization roles, and where to check them...
+	public List<Session> getAllSessions(Integer conferenceId) {
+		List<Session> sessions = new ArrayList<>();
+		sessionRepository.findByConference_ConferenceID(conferenceId).forEach(sessions::add);
+		return sessions;
+	}
+	
 	public List<Session> getAllSessions() {
 		List<Session> sessions = new ArrayList<>();
 		sessionRepository.findAll().forEach(sessions::add);
