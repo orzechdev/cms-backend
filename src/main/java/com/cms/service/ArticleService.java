@@ -1,8 +1,10 @@
 package com.cms.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
+import com.cms.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -43,6 +45,12 @@ public class ArticleService {
 
 	public void addArticle(Article article) {
 		articleRepository.save(article);
+	}
+
+	public Article addArticleFile(String fileName, User userAuthor) {
+	    Article article = new Article(fileName, Calendar.getInstance().getTime(), userAuthor, false);
+		articleRepository.save(article);
+		return article;
 	}
 	
 	public void updateArticle(Article article) {

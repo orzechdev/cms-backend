@@ -32,19 +32,27 @@ public class Version {
 	
 	@ManyToOne
 	@JoinColumn(name = "articleID",nullable= false)
-	private Article articleID;
+	private Article article;
 
 	public Version() {
 		
 	}
 
-    public Version(Integer versionID, Time  updateTime, String documentUrl, Integer vNumber, Article articleID ) {
+	public Version(Date updateTime, String documentUrl, Integer vNumber, Article article ) {
+		super();
+		this.updateTime = updateTime;
+		this.documentUrl = documentUrl;
+		this.vNumber = vNumber;
+		this.article = article;
+	}
+
+    public Version(Integer versionID, Time updateTime, String documentUrl, Integer vNumber, Article article ) {
 		super();
 		this.versionID = versionID;
 		this.updateTime = updateTime;
 		this.documentUrl = documentUrl;
 		this.vNumber = vNumber;
-		this.articleID = articleID;
+		this.article = article;
 	}
 
 	public long getversionID() {
@@ -63,8 +71,8 @@ public class Version {
 		return vNumber;
 	}
 
-	public Article getArticleID() {
-		return articleID;
+	public Article getArticle() {
+		return article;
 	}
     
 }

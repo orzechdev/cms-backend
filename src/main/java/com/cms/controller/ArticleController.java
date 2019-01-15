@@ -1,6 +1,8 @@
 package com.cms.controller;
 import java.util.List;
 
+import com.cms.entity.Version;
+import com.cms.service.VersionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,19 +21,31 @@ public class ArticleController {
 	@Autowired
     private ArticleService articleService;
 
+	@Autowired
+    private VersionService versionService;
+
     @RequestMapping("/articles")
     public List<ArticleContainer> articles() {
         return articleService.getAllArticleContainers();
     }
+
+    @RequestMapping("/articlesVersions")
+    public List<Version> versions() {
+        return versionService.getAllVersions();
+    }
+    @RequestMapping("/articlesLatestVersions")
+    public List<Version> latestVersions() {
+        return versionService.getLatestVersions();
+    }
     
     @RequestMapping("/articles/{articleId}")
     public ArticleContainer getArticle(@PathVariable Integer articleId) {
-    	return articleService.getArticleContainer(articleId);   	
+    	return articleService.getArticleContainer(articleId);
     }
     
     @RequestMapping(value="/articles", method=RequestMethod.POST)
     public void addArticle(@RequestBody Article article) {
-    	articleService.addArticle(article); 	
+    	articleService.addArticle(article);
     }
     
     @RequestMapping(value="/articles/{articleId}", method=RequestMethod.PUT)

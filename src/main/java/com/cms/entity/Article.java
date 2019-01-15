@@ -82,6 +82,13 @@ public class Article {
 
 	}
 
+	public Article(String name, Date publishDate, User userAuthor, boolean isAccepted) {
+		this.name = name;
+		this.publishDate = publishDate;
+		this.userAuthor = userAuthor;
+		this.isAccepted = isAccepted;
+	}
+
 	public Article(Integer articleID, String name, Date publishDate, User userAuthor, boolean isAccepted) {
 		this.articleID = articleID;
 		this.name = name;

@@ -27,6 +27,12 @@ public class AppUserPrincipal implements UserDetails {
         return authorities;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "user")
+    public User getUser() {
+        return user;
+    }
+
     public Integer getId() {
         return user.getId();
     }
