@@ -50,8 +50,8 @@ public class Session {
 		this.name = name;
 
 	}
-
-	public long getsessionID() {
+    
+	public long getSessionID() {
 		return sessionID;
 	}
 
