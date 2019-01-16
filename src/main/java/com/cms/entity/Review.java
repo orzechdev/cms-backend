@@ -21,9 +21,10 @@ public class Review {
 	private BigDecimal grade;
 	
 	private String comment;
-	
-	@Column(nullable = false)
-	private Integer userID;
+
+	@ManyToOne
+	@JoinColumn(name = "userID",nullable= false)
+	private User user;
 
 	public Review(){
 	}
@@ -64,12 +65,12 @@ public class Review {
 		this.comment = comment;
 	}
 
-	public Integer getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(Integer userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
