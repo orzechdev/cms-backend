@@ -1,6 +1,13 @@
 package com.cms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import microsoft.sql.DateTimeOffset;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,12 +32,20 @@ public class Session {
 	
 	@Column(name="chairName", nullable=false)
     private String chairName;
-	
+
+    @Deprecated
 	@Column(name="datetime", nullable=false)
     private Time datetime;
-	
+
+    @Deprecated
 	@Column(name="endtime", nullable=false)
     private Time endtime;
+
+	@Column(name="startDateTime", nullable=false)
+	private Timestamp startDateTime;
+
+	@Column(name="endDateTime", nullable=false)
+	private Timestamp endDateTime;
 
 	@Column(name="name", nullable=false)
     private String name;
@@ -63,10 +78,16 @@ public class Session {
 		return conference;
 	}
 
+    @Deprecated
+    @JsonIgnore
+    @JsonProperty(value = "datetime")
 	public Time getDatetime() {
 		return datetime;
 	}
 
+    @Deprecated
+    @JsonIgnore
+    @JsonProperty(value = "endtime")
 	public Time getEndtime() {
 		return endtime;
 	}
@@ -75,8 +96,11 @@ public class Session {
 		return chairName;
 	}
 
-    
-	
-	
-	
+    public Timestamp getStartDateTime() {
+        return startDateTime;
+    }
+
+    public Timestamp getEndDateTime() {
+        return endDateTime;
+    }
 }
