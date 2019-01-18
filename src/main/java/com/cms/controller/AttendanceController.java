@@ -48,10 +48,19 @@ public class AttendanceController {
     }
     
     @RequestMapping("/conferences/{conferenceId}/attendances")
-    public List<Attendance> sessions(@PathVariable Integer conferenceId) {
+    public List<Attendance> attendances(@PathVariable Integer conferenceId) {
         return attendanceService.getAllAttendances(conferenceId);
     }
     
+    @RequestMapping("/conferences/{conferenceId}/attendance/user/{userId}")
+    public Attendance userAttendance(@PathVariable Integer conferenceId,@PathVariable Integer userId) {
+        return attendanceService.getAttendance(conferenceId, userId);
+    }
+    
+    @RequestMapping("/conferences/{conferenceId}/role/user/{userId}")
+    public String userRole(@PathVariable Integer conferenceId,@PathVariable Integer userId) {
+        return attendanceService.getAttendance(conferenceId, userId).getRole();
+    }
     
     
 }

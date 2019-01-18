@@ -33,6 +33,10 @@ public class AttendanceService {
 	public Attendance getAttendance(Integer attendanceId) {
 		return attendanceRepository.findById(attendanceId).get();
 	}
+	
+	public Attendance getAttendance(Integer attendanceId, Integer userId) {
+		return attendanceRepository.findByConferenceID_ConferenceIDAndUserID_id(attendanceId,userId);
+	}
 
 	public void addAttendance(Attendance attendance) {
 		attendanceRepository.save(attendance);
