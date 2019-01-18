@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cms.entity.Attendance;
+import com.cms.entity.Session;
 import com.cms.service.AttendanceService;
 
 
@@ -44,6 +45,11 @@ public class AttendanceController {
     @RequestMapping(value="/attendances/{attendanceId}", method=RequestMethod.DELETE)
     public void deleteAttendance(@PathVariable Integer attendanceId) {
     	attendanceService.deleteAttendance(attendanceId);
+    }
+    
+    @RequestMapping("/conferences/{conferenceId}/attendances")
+    public List<Attendance> sessions(@PathVariable Integer conferenceId) {
+        return attendanceService.getAllAttendances(conferenceId);
     }
     
     

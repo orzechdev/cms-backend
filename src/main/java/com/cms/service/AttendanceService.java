@@ -23,6 +23,12 @@ public class AttendanceService {
 		attendanceRepository.findAll().forEach(attendances::add);
 		return attendances;
 	}
+	
+	public List<Attendance> getAllAttendances(Integer conferenceID) {
+		List<Attendance> attendances = new ArrayList<>();
+		attendanceRepository.findByConferenceID_ConferenceID(conferenceID).forEach(attendances::add);
+		return attendances;
+	}
 
 	public Attendance getAttendance(Integer attendanceId) {
 		return attendanceRepository.findById(attendanceId).get();
