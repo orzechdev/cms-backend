@@ -1,4 +1,5 @@
 package com.cms.controller;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,13 +54,17 @@ public class AttendanceController {
     }
     
     @RequestMapping("/conferences/{conferenceId}/attendance/user/{userId}")
-    public Attendance userAttendance(@PathVariable Integer conferenceId,@PathVariable Integer userId) {
+    public List<Attendance> userAttendance(@PathVariable Integer conferenceId,@PathVariable Integer userId) {
         return attendanceService.getAttendance(conferenceId, userId);
     }
     
     @RequestMapping("/conferences/{conferenceId}/role/user/{userId}")
-    public String userRole(@PathVariable Integer conferenceId,@PathVariable Integer userId) {
-        return attendanceService.getAttendance(conferenceId, userId).getRole();
+    public List<String> userRole(@PathVariable Integer conferenceId,@PathVariable Integer userId) {
+    	List<String> roles= new ArrayList<String>();
+    	for(Attendance a : attendanceService.getAttendance(conferenceId, userId)) {
+    		roles.add(a.getRole());
+    	}
+        return roles;
     }
     
     

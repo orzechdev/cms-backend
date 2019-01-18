@@ -12,5 +12,5 @@ import com.cms.entity.Attendance;
 
 public interface AttendanceRepository extends CrudRepository<Attendance,Integer> {
 	List<Attendance> findByConferenceID_ConferenceID(Integer conferenceId);
-	Attendance findByConferenceID_ConferenceIDAndUserID_id(Integer conferenceId, Integer userId);
+	List<Attendance> findByConferenceID_ConferenceIDAndUserID_id(Integer conferenceId, Integer userId);
 }

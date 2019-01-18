@@ -34,7 +34,7 @@ public class AttendanceService {
 		return attendanceRepository.findById(attendanceId).get();
 	}
 	
-	public Attendance getAttendance(Integer attendanceId, Integer userId) {
+	public List<Attendance> getAttendance(Integer attendanceId, Integer userId) {
 		return attendanceRepository.findByConferenceID_ConferenceIDAndUserID_id(attendanceId,userId);
 	}
 
