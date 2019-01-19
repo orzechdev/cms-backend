@@ -25,6 +25,12 @@ public class ArticleService {
 		articleRepository.findAll().forEach(articles::add);
 		return articles;
 	}
+	
+	public List<Article> getAllArticles(Integer conferenceId) {
+		List<Article> articles = new ArrayList<>();
+		articleRepository.findByConference_ConferenceID(conferenceId).forEach(articles::add);
+		return articles;
+	}
 
 	public Article getArticle(Integer articleId) {
 		return articleRepository.findById(articleId).get();
@@ -33,6 +39,15 @@ public class ArticleService {
 	public List<ArticleContainer> getAllArticleContainers() {
 		List<ArticleContainer> articles = new ArrayList<>();
 		for(Article a: articleRepository.findAll()) {
+			articles.add(new ArticleContainer(a));
+		}
+		//articleRepository.findAll().forEach(articles::add);
+		return articles;
+	}
+	
+	public List<ArticleContainer> getAllArticleContainers(Integer conferenceId) {
+		List<ArticleContainer> articles = new ArrayList<>();
+		for(Article a: articleRepository.findByConference_ConferenceID(conferenceId)) {
 			articles.add(new ArticleContainer(a));
 		}
 		//articleRepository.findAll().forEach(articles::add);

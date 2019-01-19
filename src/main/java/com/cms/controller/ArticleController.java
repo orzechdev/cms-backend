@@ -58,6 +58,11 @@ public class ArticleController {
     	return articleService.getArticleContainer(articleId);
     }
     
+    @RequestMapping("/conferences/{conferenceId}/articles")
+    public List<ArticleContainer> articles(@PathVariable Integer conferenceId) {
+    	return articleService.getAllArticleContainers(conferenceId);
+    }
+    
     @RequestMapping(value="/articles", method=RequestMethod.POST)
     public void addArticle(@RequestBody Article article) {
     	articleService.addArticle(article);
