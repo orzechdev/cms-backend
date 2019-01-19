@@ -8,7 +8,6 @@ import com.cms.entity.*;
 import com.cms.repository.PresentationRepository;
 import com.cms.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.cms.repository.ConferenceRepository;

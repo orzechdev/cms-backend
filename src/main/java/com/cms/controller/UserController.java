@@ -1,5 +1,4 @@
 package com.cms.controller;
-import java.security.Principal;
 import java.util.List;
 
 import com.cms.entity.Article;
@@ -7,7 +6,6 @@ import com.cms.entity.Review;
 import com.cms.entity.User;
 import com.cms.service.AppUserDetailsService;
 import com.cms.principal.AppUserPrincipal;
-import com.cms.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cms.entity.Attendance;
-import com.cms.entity.Session;
 import com.cms.service.AttendanceService;
 
 
