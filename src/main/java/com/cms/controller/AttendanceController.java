@@ -2,7 +2,9 @@ package com.cms.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cms.principal.AppUserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,18 +54,26 @@ public class AttendanceController {
         return attendanceService.getAllAttendances(conferenceId);
     }
     
-    @RequestMapping("/conferences/{conferenceId}/attendance/user/{userId}")
-    public List<Attendance> userAttendance(@PathVariable Integer conferenceId,@PathVariable Integer userId) {
-        return attendanceService.getAttendance(conferenceId, userId);
+    @RequestMapping("/conferences/{conferenceId}/attendance/user")
+    public List<Attendance> userAttendance(@AuthenticationPrincipal AppUserPrincipal userPrincipal, @PathVariable Integer conferenceId) {
+        if (userPrincipal != null) {
+            return attendanceService.getAttendance(conferenceId, userPrincipal.getId());
+        } else {
+            return null;
+        }
     }
     
-    @RequestMapping("/conferences/{conferenceId}/role/user/{userId}")
-    public List<String> userRole(@PathVariable Integer conferenceId,@PathVariable Integer userId) {
-    	List<String> roles= new ArrayList<String>();
-    	for(Attendance a : attendanceService.getAttendance(conferenceId, userId)) {
-    		roles.add(a.getRole());
-    	}
-        return roles;
+    @RequestMapping("/conferences/{conferenceId}/role/user")
+    public List<String> userRole(@AuthenticationPrincipal AppUserPrincipal userPrincipal, @PathVariable Integer conferenceId) {
+        if (userPrincipal != null) {
+            List<String> roles = new ArrayList<String>();
+            for (Attendance a : attendanceService.getAttendance(conferenceId, userPrincipal.getId())) {
+                roles.add(a.getRole());
+            }
+            return roles;
+        } else {
+            return null;
+        }
     }
     
     
