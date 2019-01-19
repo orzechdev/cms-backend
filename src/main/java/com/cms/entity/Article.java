@@ -24,6 +24,18 @@ public class Article {
 	@ManyToOne
 	@JoinColumn(name = "userAuthorID",nullable= false)
 	private User userAuthor;
+	
+	@ManyToOne
+	@JoinColumn(name = "conferenceID",nullable= false)
+	private Conference conference;
+
+	public Conference getConference() {
+		return conference;
+	}
+
+	public void setConference(Conference conference) {
+		this.conference = conference;
+	}
 
 	private boolean isAccepted;
 
@@ -82,18 +94,20 @@ public class Article {
 
 	}
 
-	public Article(String name, Date publishDate, User userAuthor, boolean isAccepted) {
+	public Article(String name, Date publishDate, User userAuthor, boolean isAccepted, Conference conference) {
 		this.name = name;
 		this.publishDate = publishDate;
 		this.userAuthor = userAuthor;
 		this.isAccepted = isAccepted;
+		this.conference = conference;
 	}
 
-	public Article(Integer articleID, String name, Date publishDate, User userAuthor, boolean isAccepted) {
+	public Article(Integer articleID, String name, Date publishDate, User userAuthor, boolean isAccepted, Conference conference) {
 		this.articleID = articleID;
 		this.name = name;
 		this.publishDate = publishDate;
 		this.userAuthor = userAuthor;
 		this.isAccepted = isAccepted;
+		this.conference = conference;
 	}
 }

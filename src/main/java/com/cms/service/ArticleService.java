@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.cms.controller.ArticleContainer;
 import com.cms.entity.Article;
+import com.cms.entity.Conference;
 import com.cms.repository.ArticleRepository;
 
 @Service
@@ -46,8 +47,8 @@ public class ArticleService {
 		articleRepository.save(article);
 	}
 
-	public Article addArticleFile(String fileName, User userAuthor) {
-		return articleRepository.save(new Article(fileName, Calendar.getInstance().getTime(), userAuthor, false));
+	public Article addArticleFile(String fileName, User userAuthor, Conference conference) {
+		return articleRepository.save(new Article(fileName, Calendar.getInstance().getTime(), userAuthor, false, conference));
 	}
 
 	public void updateArticle(Article article) {

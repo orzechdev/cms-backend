@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.cms.entity.Article;
 import com.cms.service.ArticleService;
+import com.cms.service.ConferenceService;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -30,6 +32,9 @@ public class ArticleController {
 
 	@Autowired
     private ArticleService articleService;
+	
+	@Autowired
+    private ConferenceService conferenceService;
 
 	@Autowired
     private VersionService versionService;
@@ -76,8 +81,8 @@ public class ArticleController {
     @Autowired
     private FileStorageService fileStorageService;
 
-    @PostMapping("/uploadFile")
-    public Version uploadFile(@AuthenticationPrincipal AppUserPrincipal user, @RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName) {
+    @PostMapping("/uploadFile/{conferenceId}")
+    public Version uploadFile(@AuthenticationPrincipal AppUserPrincipal user, @RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName, @PathVariable Integer conferenceId) {
         if (user != null) {
 
             String fileNameStored = fileStorageService.storeFile(file);
@@ -87,7 +92,7 @@ public class ArticleController {
                     .path(fileNameStored)
                     .toUriString();
 
-            Article article = articleService.addArticleFile(fileName, user.getUser());
+            Article article = articleService.addArticleFile(fileName, user.getUser(),conferenceService.getConference(conferenceId));
             Version version = versionService.addInitialVersionWithArticle(article, fileDownloadUri);
 
             return version;
@@ -96,12 +101,12 @@ public class ArticleController {
         }
     }
 
-    @PostMapping("/uploadMultipleFiles")
-    public List<Version> uploadMultipleFiles(@AuthenticationPrincipal AppUserPrincipal user, @RequestParam("files") MultipartFile[] files, @RequestParam("fileNames") String[] fileNames) {
+    @PostMapping("/uploadMultipleFiles/{conferenceId}")
+    public List<Version> uploadMultipleFiles(@AuthenticationPrincipal AppUserPrincipal user, @RequestParam("files") MultipartFile[] files, @RequestParam("fileNames") String[] fileNames, @PathVariable Integer conferenceId) {
         List<Version> versions = new ArrayList<>();
         int fileNamesItr = 0;
         for (MultipartFile file : files) {
-            versions.add(uploadFile(user, file, fileNames[fileNamesItr]));
+            versions.add(uploadFile(user, file, fileNames[fileNamesItr],conferenceId));
             fileNamesItr++;
         }
         return versions;

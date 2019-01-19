@@ -15,6 +15,7 @@ public class ArticleContainer {
 	private Date publishDate;
 	private String authorName;
 	private boolean isAccepted;
+	private Integer conferenceId;
 
 	public ArticleContainer(Article article) {
 		articleID=article.getArticleID();
@@ -22,6 +23,11 @@ public class ArticleContainer {
 		publishDate=article.getPublishDate();
 		isAccepted=article.isAccepted();
 		authorName=article.getUserAuthor().getFirstName()+" "+article.getUserAuthor().getLastName();
+		conferenceId=article.getConference().getConferenceID();
+	}
+
+	public Integer getConferenceId() {
+		return conferenceId;
 	}
 
 	public Integer getArticleID() {
