@@ -55,7 +55,7 @@ public class Conference {
 		this.accomodationInfo = accomodationInfo;
 	}
 
-	public long getConferenceID() {
+	public Integer getConferenceID() {
 		return conferenceID;
 	}
 
