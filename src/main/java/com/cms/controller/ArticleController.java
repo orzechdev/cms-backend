@@ -71,7 +71,7 @@ public class ArticleController {
 
 
 
-    private static final Logger logger = LoggerFactory.getLogger(FileController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
     @Autowired
     private FileStorageService fileStorageService;
