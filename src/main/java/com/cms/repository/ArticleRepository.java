@@ -10,4 +10,6 @@ import java.util.List;
 public interface ArticleRepository extends CrudRepository<Article,Integer> {
     public List<Article> findAllByOrderByUserAuthor_IdDesc();
     public List<Article> findByConference_ConferenceID(Integer conferenceId);
+    public List<Article> findByConference_ConferenceIDAndUserAuthor_Id(Integer conferenceId, Integer authorId);
+    
 }

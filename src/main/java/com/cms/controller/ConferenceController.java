@@ -51,11 +51,13 @@ public class ConferenceController {
     public List<Presentation> getConferencePresentations(@PathVariable Integer conferenceId) {
         return conferenceService.getConferencePresentations(conferenceId);
     }
-
+/* NOTE: This would show only articles assigned to presentations
     @RequestMapping("/conferences/{conferenceId}/articles")
     public List<Article> getConferenceArticles(@PathVariable Integer conferenceId) {
         return conferenceService.getConferenceArticles(conferenceId);
     }
+    
+    */
     @RequestMapping("/conferences/{conferenceId}/articlesVersions")
     public List<Version> getConferenceArticlesVersions(@PathVariable Integer conferenceId) {
         return conferenceService.getConferenceArticlesVersions(conferenceId);
