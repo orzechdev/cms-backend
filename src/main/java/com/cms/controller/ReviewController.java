@@ -1,7 +1,9 @@
 package com.cms.controller;
 import java.util.List;
 
+import com.cms.principal.AppUserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,10 +30,18 @@ public class ReviewController {
     public Review getReview(@PathVariable Integer reviewId) {
     	return reviewService.getReview(reviewId);   	
     }
+
+    @RequestMapping("/reviewForArticle/{articleId}")
+    public Review getUserReviewForArticle(@AuthenticationPrincipal AppUserPrincipal user, @PathVariable Integer articleId) {
+        return reviewService.getUserReviewForArticle(user.getUser(), articleId);
+    }
     
     @RequestMapping(value="/reviews", method=RequestMethod.POST)
-    public void addReview(@RequestBody Review review) {
-    	reviewService.addReview(review); 	
+    public void addReview(@AuthenticationPrincipal AppUserPrincipal user, @RequestBody Review review) {
+        if (user != null) {
+            review.setUser(user.getUser());
+            reviewService.addReview(review);
+        }
     }
     
     @RequestMapping(value="/reviews/{reviewId}", method=RequestMethod.PUT)

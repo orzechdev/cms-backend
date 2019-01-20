@@ -2,6 +2,7 @@ package com.cms.service;
 
 import com.cms.controller.ArticleContainer;
 import com.cms.entity.Article;
+import com.cms.entity.Conference;
 import com.cms.entity.User;
 import com.cms.repository.ArticleRepository;
 import org.junit.Before;
@@ -45,9 +46,9 @@ public class ArticleServiceTest {
                 "test@test.test",
                 123456789
         );
-        testArticles.add(new Article(0, "Test1", new Date(0), testAuthor, false));
-        testArticles.add(new Article(1, "Test2", new Date(100), testAuthor, false));
-        testArticles.add(new Article(2, "Test3", new Date(3000), testAuthor, false));
+        testArticles.add(new Article(0, "Test1", new Date(0), testAuthor, false, new Conference()));
+        testArticles.add(new Article(1, "Test2", new Date(100), testAuthor, false, new Conference()));
+        testArticles.add(new Article(2, "Test3", new Date(3000), testAuthor, false, new Conference()));
 
         for (Article article : testArticles) {
             testArticleContainers.add(new ArticleContainer(article));

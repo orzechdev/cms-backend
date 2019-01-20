@@ -3,6 +3,7 @@ package com.cms.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cms.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,10 @@ public class ReviewService {
 
 	public Review getReview(Integer reviewId) {
 		return reviewRepository.findById(reviewId).get();
+	}
+
+	public Review getUserReviewForArticle(User user, Integer articleID) {
+		return reviewRepository.findFirstByUserAndArticleID(user, articleID);
 	}
 
 	public void addReview(Review review) {
