@@ -31,14 +31,6 @@ public class Session {
 	@Column(name="chairName", nullable=false)
     private String chairName;
 
-    @Deprecated
-	@Column(name="datetime", nullable=false)
-    private Time datetime;
-
-    @Deprecated
-	@Column(name="endtime", nullable=false)
-    private Time endtime;
-
 	@Column(name="startDateTime", nullable=false)
 	private Timestamp startDateTime;
 
@@ -52,14 +44,14 @@ public class Session {
 		
 	}
 
-    public Session(Integer sessionID, Conference conference, String chairName, Time datetime, Time endtime, String name)
+    public Session(Integer sessionID, Conference conference, String chairName, Timestamp startDateTime, Timestamp endDateTime, String name)
     {
 		super();
 		this.sessionID = sessionID;
 		this.conference = conference;
 		this.chairName = chairName;
-		this.datetime = datetime;
-		this.endtime = endtime;
+		this.startDateTime = startDateTime;
+		this.endDateTime = endDateTime;
 		this.name = name;
 
 	}
@@ -74,20 +66,6 @@ public class Session {
 
 	public Conference getConference() {
 		return conference;
-	}
-
-    @Deprecated
-    @JsonIgnore
-    @JsonProperty(value = "datetime")
-	public Time getDatetime() {
-		return datetime;
-	}
-
-    @Deprecated
-    @JsonIgnore
-    @JsonProperty(value = "endtime")
-	public Time getEndtime() {
-		return endtime;
 	}
 
 	public String getChairName() {

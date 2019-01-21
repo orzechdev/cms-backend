@@ -29,7 +29,7 @@ public class VersionService {
     }
 
     public List<Version> getLatestVersions() {
-        List<Version> allVersions = new ArrayList<>(versionRepository.findAllByOrderByVersionIDDescArticle_ArticleIDDesc());
+        List<Version> allVersions = new ArrayList<>(versionRepository.findAllByOrderByVersionIDDescVerNumberDescArticle_ArticleIDDesc());
         List<Version> latestVersions = new ArrayList<>();
         Integer lastArticleID = -1;
         for (Version version : allVersions) {

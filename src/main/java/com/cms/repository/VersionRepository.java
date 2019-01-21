@@ -8,5 +8,5 @@ import java.util.List;
 
 
 public interface VersionRepository extends CrudRepository<Version,Integer> {
-    public List<Version> findAllByOrderByVersionIDDescArticle_ArticleIDDesc();
+    public List<Version> findAllByOrderByVersionIDDescVerNumberDescArticle_ArticleIDDesc();
 }

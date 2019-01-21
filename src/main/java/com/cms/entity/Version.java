@@ -28,7 +28,7 @@ public class Version {
     private String documentUrl;
 	
 	@Column(name="vNumber", nullable=false)
-    private Integer vNumber;
+    private Integer verNumber;
 	
 	@ManyToOne
 	@JoinColumn(name = "articleID",nullable= false)
@@ -38,11 +38,11 @@ public class Version {
 		
 	}
 
-	public Version(Date updateTime, String documentUrl, Integer vNumber, Article article ) {
+	public Version(Date updateTime, String documentUrl, Integer verNumber, Article article ) {
 		super();
 		this.updateTime = updateTime;
 		this.documentUrl = documentUrl;
-		this.vNumber = vNumber;
+		this.verNumber = verNumber;
 		this.article = article;
 	}
 
@@ -51,7 +51,7 @@ public class Version {
 		this.versionID = versionID;
 		this.updateTime = updateTime;
 		this.documentUrl = documentUrl;
-		this.vNumber = vNumber;
+		this.verNumber = verNumber;
 		this.article = article;
 	}
 
@@ -67,8 +67,8 @@ public class Version {
 		return documentUrl;
 	}
 
-	public Integer getVNumber() {
-		return vNumber;
+	public Integer getVerNumber() {
+		return verNumber;
 	}
 
 	public Article getArticle() {

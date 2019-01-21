@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,9 +50,9 @@ public class SessionServiceTest {
                 "Description1", new Date(0), new Date(1), testAuthor,
                 "Img", "emergencyInfo",
                 "accomodationInfo");
-        testSessions.add(new Session(0, testConference, "testChairName", new Time(0), new Time(1), "sessionName"));
-        testSessions.add(new Session(1, testConference, "testChairName", new Time(0), new Time(1), "sessionName"));
-        testSessions.add(new Session(2, testConference, "testChairName", new Time(0), new Time(1), "sessionName"));
+        testSessions.add(new Session(0, testConference, "testChairName", new Timestamp(0), new Timestamp(1), "sessionName"));
+        testSessions.add(new Session(1, testConference, "testChairName", new Timestamp(0), new Timestamp(1), "sessionName"));
+        testSessions.add(new Session(2, testConference, "testChairName", new Timestamp(0), new Timestamp(1), "sessionName"));
 
 
         Mockito.when(sessionRepository.findAll()).thenReturn(testSessions);
