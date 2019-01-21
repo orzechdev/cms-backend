@@ -45,8 +45,11 @@ public class ReviewController {
     }
     
     @RequestMapping(value="/reviews/{reviewId}", method=RequestMethod.PUT)
-    public void updateReview(@RequestBody Review review) {
-    	reviewService.updateReview(review);
+    public void updateReview(@AuthenticationPrincipal AppUserPrincipal user, @RequestBody Review review) {
+        if (user != null) {
+            review.setUser(user.getUser());
+            reviewService.updateReview(review);
+        }
     }
     
     @RequestMapping(value="/reviews/{reviewId}", method=RequestMethod.DELETE)
