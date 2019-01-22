@@ -55,6 +55,11 @@ public class ConferenceService {
 		presentationRepository.findBySession_Conference_ConferenceID(conferenceId).forEach(presentations::add);
 		return presentations;
 	}
+    public List<Presentation> getConferenceSessionPresentations(Integer conferenceId, Integer sessionId) {
+        List<Presentation> presentations = new ArrayList<>();
+        presentationRepository.findBySession_SessionIDAndSession_Conference_ConferenceID(sessionId, conferenceId).forEach(presentations::add);
+        return presentations;
+    }
 
     public List<Article> getConferenceArticles(Integer conferenceId) {
         List<Article> articles = new ArrayList<>();

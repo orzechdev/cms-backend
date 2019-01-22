@@ -62,5 +62,7 @@ public class ConferenceController {
     public List<Version> getConferenceArticlesVersions(@PathVariable Integer conferenceId) {
         return conferenceService.getConferenceArticlesVersions(conferenceId);
     }
-    
+
+
+
 }

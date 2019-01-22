@@ -3,6 +3,8 @@ package com.cms.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cms.entity.Presentation;
+import com.cms.repository.PresentationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class SessionService {
 	
 	@Autowired
 	private SessionRepository sessionRepository;
+
+	@Autowired
+	private PresentationRepository presentationRepository;
 
 //    @PreAuthorize("hasAuthority('user')") TODO: think about authorization roles, and where to check them...
 	public List<Session> getAllSessions(Integer conferenceId) {
@@ -44,4 +49,28 @@ public class SessionService {
 		sessionRepository.deleteById(sessionId);		
 	}
 
+
+	public void addConferencePresentation(Presentation presentation) {
+		presentationRepository.save(presentation);
+	}
+	public void updateConferencePresentation(Presentation presentation) {
+		presentationRepository.save(presentation);
+	}
+	public void deleteConferencePresentation(Integer presentationId) {
+		presentationRepository.deleteById(presentationId);
+	}
+
+    public void addConferencePresentationMany(List<Presentation> presentations) {
+        presentationRepository.saveAll(presentations);
+    }
+//    public void deleteConferencePresentationMany(List<Presentation> presentations) {
+//	    presentations.forEach(presentation ->
+//	        deleteConferencePresentation(presentation.getpresentationID())
+//        );
+//    }
+    public void deleteConferencePresentationMany(List<Integer> presentationsIds) {
+        presentationsIds.forEach(presentationId ->
+            deleteConferencePresentation(presentationId)
+        );
+    }
 }

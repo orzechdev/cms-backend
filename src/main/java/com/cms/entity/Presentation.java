@@ -63,7 +63,7 @@ public class Presentation {
 		this.article = article;
 	}
 
-	public long getpresentationID() {
+	public Integer getpresentationID() {
 		return presentationID;
 	}
 
@@ -98,5 +98,12 @@ public class Presentation {
 	public Article getArticle() {
 		return article;
 	}
-    
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
+	}
 }

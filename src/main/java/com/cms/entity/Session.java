@@ -56,7 +56,7 @@ public class Session {
 
 	}
     
-	public long getSessionID() {
+	public Integer getSessionID() {
 		return sessionID;
 	}
 
@@ -79,4 +79,8 @@ public class Session {
     public Timestamp getEndDateTime() {
         return endDateTime;
     }
+
+	public void setConference(Conference conference) {
+		this.conference = conference;
+	}
 }
