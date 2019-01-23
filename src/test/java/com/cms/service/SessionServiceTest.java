@@ -3,6 +3,7 @@ package com.cms.service;
 import com.cms.entity.Conference;
 import com.cms.entity.Session;
 import com.cms.entity.User;
+import com.cms.repository.PresentationRepository;
 import com.cms.repository.SessionRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +34,8 @@ public class SessionServiceTest {
     private SessionService sessionService;
     @MockBean
     private SessionRepository sessionRepository;
+    @MockBean
+    private PresentationRepository presentationRepository;
 
     private List<Session> testSessions = new ArrayList<>();
 

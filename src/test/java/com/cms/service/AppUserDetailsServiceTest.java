@@ -2,6 +2,8 @@ package com.cms.service;
 
 import com.cms.entity.User;
 import com.cms.principal.AppUserPrincipal;
+import com.cms.repository.ArticleRepository;
+import com.cms.repository.ReviewRepository;
 import com.cms.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,6 +33,10 @@ public class AppUserDetailsServiceTest {
     private AppUserDetailsService userService;
     @MockBean
     private UserRepository userRepository;
+    @MockBean
+    private ArticleRepository articleRepository;
+    @MockBean
+    private ReviewRepository reviewRepository;
 
     private List<User> testUsers = new ArrayList<>();
 
