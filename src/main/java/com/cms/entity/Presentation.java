@@ -63,14 +63,6 @@ public class Presentation {
 		this.article = article;
 	}
 
-	public Integer getpresentationID() {
-		return presentationID;
-	}
-
-	public String getpresentationName() {
-		return presentationName;
-	}
-
 	public String getDescription() {
 		return description;
 	}
