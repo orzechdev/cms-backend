@@ -83,4 +83,24 @@ public class Session {
 	public void setConference(Conference conference) {
 		this.conference = conference;
 	}
+
+	public void setSessionID(Integer sessionID) {
+		this.sessionID = sessionID;
+	}
+
+	public void setChairName(String chairName) {
+		this.chairName = chairName;
+	}
+
+	public void setStartDateTime(Timestamp startDateTime) {
+		this.startDateTime = startDateTime;
+	}
+
+	public void setEndDateTime(Timestamp endDateTime) {
+		this.endDateTime = endDateTime;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

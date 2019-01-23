@@ -106,4 +106,40 @@ public class Presentation {
 	public void setArticle(Article article) {
 		this.article = article;
 	}
+
+	public Integer getPresentationID() {
+		return presentationID;
+	}
+
+	public void setPresentationID(Integer presentationID) {
+		this.presentationID = presentationID;
+	}
+
+	public void setStartTime(Time startTime) {
+		this.startTime = startTime;
+	}
+
+	public void setEndTime(Time endTime) {
+		this.endTime = endTime;
+	}
+
+	public void setRoom(String room) {
+		this.room = room;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getPresentationName() {
+		return presentationName;
+	}
+
+	public void setPresentationName(String presentationName) {
+		this.presentationName = presentationName;
+	}
+
+	public void setPresenterName(String presenterName) {
+		this.presenterName = presenterName;
+	}
 }

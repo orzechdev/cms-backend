@@ -47,9 +47,14 @@ public class SessionController {
     }
     
     @RequestMapping(value="/conferences/{conferenceId}/sessions/{sessionId}", method=RequestMethod.PUT)
-    public void updateSession(@RequestBody Session session, @PathVariable Integer conferenceId) {
-        session.setConference(conferenceService.getConference(conferenceId));
-    	sessionService.updateSession(session);
+    public void updateSession(@RequestBody Session session, @PathVariable Integer conferenceId, @PathVariable Integer sessionId) {
+        Session sessionEnd = sessionService.getSession(sessionId);
+        sessionEnd.setConference(conferenceService.getConference(conferenceId));
+        sessionEnd.setChairName(session.getChairName());
+        sessionEnd.setName(session.getName());
+        sessionEnd.setStartDateTime(session.getStartDateTime());
+        sessionEnd.setEndDateTime(session.getEndDateTime());
+    	sessionService.updateSession(sessionEnd);
     }
     
     @RequestMapping(value="/conferences/{conferenceId}/sessions/{sessionId}", method=RequestMethod.DELETE)
@@ -67,9 +72,16 @@ public class SessionController {
 
     @RequestMapping(value="/conferences/{conferenceId}/sessions/{sessionId}/presentations", method=RequestMethod.PUT)
     public void updateConferencePresentation(@RequestBody Presentation presentation, @PathVariable Integer sessionId, @PathVariable Integer articleId) {
-        presentation.setSession(sessionService.getSession(sessionId));
-        presentation.setArticle(articleService.getArticle(articleId));
-        sessionService.updateConferencePresentation(presentation);
+        Presentation presentationEnd = sessionService.getPresentation(presentation.getPresentationID());
+        presentationEnd.setSession(sessionService.getSession(sessionId));
+        presentationEnd.setArticle(articleService.getArticle(articleId));
+        presentationEnd.setDescription(presentation.getDescription());
+        presentationEnd.setEndTime(presentation.getEndTime());
+        presentationEnd.setPresentationName(presentation.getPresentationName());
+        presentationEnd.setPresenterName(presentation.getPresenterName());
+        presentationEnd.setRoom(presentation.getRoom());
+        presentationEnd.setStartTime(presentation.getStartTime());
+        sessionService.updateConferencePresentation(presentationEnd);
     }
 
     @RequestMapping(value="/conferences/{conferenceId}/sessions/{sessionId}/presentations/{presentationId}", method=RequestMethod.DELETE)

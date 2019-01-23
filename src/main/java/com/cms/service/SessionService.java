@@ -49,6 +49,10 @@ public class SessionService {
 		sessionRepository.deleteById(sessionId);		
 	}
 
+	public Presentation getPresentation(Integer presentationId) {
+		return presentationRepository.findById(presentationId).get();
+	}
+
 
 	public void addConferencePresentation(Presentation presentation) {
 		presentationRepository.save(presentation);
