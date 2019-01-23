@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cms.principal.AppUserPrincipal;
+import com.cms.service.ConferenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +25,9 @@ public class AttendanceController {
 	@Autowired
     private AttendanceService attendanceService;
 
+	@Autowired
+    private ConferenceService conferenceService;
+
     @RequestMapping("/attendances")
     public List<Attendance> attendances() {
         return attendanceService.getAllAttendances();
@@ -33,10 +37,24 @@ public class AttendanceController {
     public Attendance getAttendance(@PathVariable Integer attendanceId) {
     	return attendanceService.getAttendance(attendanceId);   	
     }
-    
+
     @RequestMapping(value="/attendancess", method=RequestMethod.POST)
     public void addAttendance(@RequestBody Attendance attendance) {
-    	attendanceService.addAttendance(attendance); 	
+    	attendanceService.addAttendance(attendance);
+    }
+    @RequestMapping(value="/attendanceUserAttend/{conferenceId}", method=RequestMethod.POST)
+    public void addAttendance(@AuthenticationPrincipal AppUserPrincipal userPrincipal, @RequestBody Attendance attendance, @PathVariable Integer conferenceId) {
+        Integer attId = attendance.getAttendanceID();
+        Attendance attendanceEnd;
+        if (attId == null) {
+            attendanceEnd = attendance;
+            attendanceEnd.setUserID(userPrincipal.getUser());
+            attendanceEnd.setConferenceID(conferenceService.getConference(conferenceId));
+        } else {
+            attendanceEnd = attendanceService.getAttendance(attId);
+            attendanceEnd.setAttendance(attendance.getAttendance());
+        }
+        attendanceService.addAttendance(attendanceEnd);
     }
     
     @RequestMapping(value="/attendances/{attendanceId}", method=RequestMethod.PUT)

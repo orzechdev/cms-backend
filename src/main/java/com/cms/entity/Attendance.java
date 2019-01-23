@@ -47,7 +47,7 @@ public class Attendance {
 
 	}
 
-	public long getAttendanceID() {
+	public Integer getAttendanceID() {
 		return AttendanceID;
 	}
 
@@ -67,6 +67,23 @@ public class Attendance {
 		return attendance;
 	}
 
-    
-	
+	public void setConferenceID(Conference conferenceID) {
+		this.conferenceID = conferenceID;
+	}
+
+	public void setUserID(User userID) {
+		this.userID = userID;
+	}
+
+	public void setAttendanceID(Integer attendanceID) {
+		AttendanceID = attendanceID;
+	}
+
+	public void setAttendance(boolean attendance) {
+		this.attendance = attendance;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }
