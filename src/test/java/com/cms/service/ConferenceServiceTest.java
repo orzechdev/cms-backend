@@ -1,9 +1,10 @@
 package com.cms.service;
 
-import com.cms.entity.Article;
 import com.cms.entity.Conference;
 import com.cms.entity.User;
 import com.cms.repository.ConferenceRepository;
+import com.cms.repository.PresentationRepository;
+import com.cms.repository.SessionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,10 +27,16 @@ import static org.junit.Assert.assertEquals;
 @Import(com.cms.service.ConferenceServiceTestContextConfiguration.class)
 public class ConferenceServiceTest {
 
-        @Autowired
-        private ConferenceService conferenceService;
-        @MockBean
-        private ConferenceRepository conferenceRepository;
+    @Autowired
+    private ConferenceService conferenceService;
+    @MockBean
+    private ConferenceRepository conferenceRepository;
+    @MockBean
+    private PresentationRepository presentationRepository;
+    @MockBean
+    private SessionRepository sessionRepository;
+    @MockBean
+    private VersionService versionService;
 
         private List<Conference> testConferences = new ArrayList<>();
 
